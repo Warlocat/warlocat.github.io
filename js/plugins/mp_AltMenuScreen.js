@@ -30,3 +30,7 @@ Window_ItemCategory.prototype.makeCommandList = function() {
 };
 
 
+Window_Options.prototype.addGeneralOptions = function() {
+    this.addCommand(TextManager.alwaysDash, 'alwaysDash');
+};
+
