@@ -12,7 +12,7 @@
 # The first 3 columns in the contraction coefficients of p-shell
 # are those for p1/2 followed by 3 columns representing p3/2. 
 # The other basis functions in p-shell are those belonging to the third 
-# category (see manuscript) the contributes to both p1/2 and p3/2 spinors.
+# category (see manuscript) that contributes to both p1/2 and p3/2 spinors.
 
 
 B:PVDZ-SF

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../all.css">
+    <title>Gradients</title>
+    <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h2>Analytical gradients for electron-correlation methods</hh1>
+    </div>
+    <div class="main_box">
+        <p>
+We follow the notations in
+<a href="https://doi.org/10.1063/5.0038779">J. Chem. Phys. 154, 064110 (2021)</a>. In this note, we use \(ij\dots,ab\dots,pq\dots\) for correlated orbitals, \(i^{\prime}j^{\prime}\dots,a^{\prime}b^{\prime}\dots,p^{\prime}q^{\prime}\dots\) for frozen core and frozen virtual orbitals, and \(IJ\dots,AB\dots,PQ\dots\) for all orbitals. This derivation has explicitly considered complex-valued integrals and frozen core/virtual orbitals.
+From the definition of the \(I^\prime\) intermediates, we have assumed canonical HF orbitals.
+
+            <br><br>
+            Take coupled cluster (CC) methods as an example. We define the (symmetrized) unrelaxed CC density matrices as
+            \[D_{pq}=\langle\Psi_{HF}|(1+\Lambda)e^{-T}\left\{ a_{p}^{\dagger}a_{q}\right\} _{c}e^{T}|\Psi_{HF}\rangle_{x=0}\]
+            \[\Gamma_{pq,rs}=\langle\Psi_{HF}|(1+\Lambda)e^{-T}\left\{ a_{p}^{\dagger}a_{q}^{\dagger}a_{s}a_{r}\right\} _{c}e^{T}|\Psi_{HF}\rangle_{x=0}\]
+            \[\tilde{\Gamma}_{pq,rs}=\frac{1}{2}\left(\Gamma_{pq,rs}+\Gamma_{rs,pq}^{\ast}\right)\]
+            where \(x\) is the external perturbation parameter, \(\Lambda\) is the de-excitation operators solved in the \(\Lambda\)-equations, and \(T\) is the cluster operator. The CC energy and the energy derivatives are
+            \[E = \sum_{pq}f_{pq} D_{pq} + \frac{1}{4}\sum_{pqrs}\langle pq||rs\rangle \tilde{\Gamma}_{pq,rs}\]
+            \[\frac{dE}{dx}=\sum_{pq}\frac{df_{pq}}{dx}D_{pq}+\frac{1}{4}\sum_{pqrs}\frac{d\langle pq||rs\rangle}{dx}\tilde{\Gamma}_{pq,rs}\]
+            In fact, the energy expression is not limited to CC methods. The following derivations are also applicable to other electron-correlation methods as long as the energy can be calculated using one- and two-particle unrelaxed density matrices.
+            <br><br>
+            Define the orbital relaxation \(\phi_{p}(x)=\sum_{T}U_{Tp}\phi_{T}(0)\) , \(\frac{d}{dx}\phi_{p}(x)=\sum_{T}U_{Tp}^{x}\phi_{T}(0)\), and the derivatives of integrals \(h_{pq}^{x}=\sum_{\mu\nu}C_{\mu p}^{\ast}\frac{dh_{\mu\nu}}{dx}C_{\nu q}\) and \(\langle pq||rs\rangle^{x}=\sum_{\mu\nu\rho\sigma}\frac{d\langle\mu\nu||\sigma\rho\rangle}{dx}C_{\mu p}^{\ast}C_{\nu q}^{\ast}C_{\sigma r}C_{\rho s}\). We thus have
+
+\begin{aligned}\frac{df_{pq}}{dx}= & \frac{d}{dx}\left(h_{pq}+\sum_{I}\langle pI||qI\rangle\right)=h_{pq}^{x}+\sum_{T}\left(U_{Tp}^{x\ast}h_{tq}+U_{Tq}h_{pt}\right)\\
++ & \sum_{I}\langle pI||rI\rangle^{x}+\sum_{TI}\left(U_{Tp}^{x\ast}\langle TI||qI\rangle+U_{Tq}\langle pI||TI\rangle+U_{TI}^{x\ast}\langle pT||qI\rangle+U_{TI}\langle pI||qT\rangle\right)\\
+= & f_{pq}^{x}+\sum_{T}\left(U_{Tp}^{x\ast}f_{Tq}+U_{Tq}f_{pT}\right)+\sum_{TI}\left(U_{TI}^{x\ast}\langle pT||qI\rangle+U_{TI}\langle pI||qT\rangle\right)
+\end{aligned}
+and
+\begin{aligned}\frac{dE}{dx}= & \sum_{pq}D_{pq}f_{pq}^{x}+\frac{1}{4}\sum_{pqrs}\langle pq||rs\rangle^{x}\tilde{\Gamma}_{pq,rs}\\
++ & \sum_{pq}D_{pq}\left[\sum_{T}\left(U_{Tp}^{x\ast}f_{Tq}+U_{Tq}f_{pT}\right)+\sum_{TI}\left(U_{TI}^{x\ast}\langle pT||qI\rangle+U_{TI}\langle pI||qT\rangle\right)\right]\\
++ & \frac{1}{4}\sum_{pqrs}\tilde{\Gamma}_{pq,rs}\sum_{T}\left[U_{Tp}^{x\ast}\langle Tq||rs\rangle+U_{Tq}^{x\ast}\langle pT||rs\rangle+U_{Tr}^{x}\langle pq||Ts\rangle+U_{Ts}^{x}\langle pq||rT\rangle\right]\\
+\equiv & \left\langle \frac{dE}{dx}\right\rangle _{expectation}+\left\langle \frac{dE}{dx}\right\rangle _{relaxation}
+\end{aligned}
+
+, where we define the expectation value and orbital relaxation part of the total energy derivative as
+
+\begin{aligned}\left\langle \frac{dE}{dx}\right\rangle _{expectation}= & \sum_{pq}D_{pq}f_{pq}^{x}+\frac{1}{4}\sum_{pqrs}\langle pq||rs\rangle^{x}\tilde{\Gamma}_{pq,rs}\end{aligned}
+
+
+\begin{aligned}\left\langle \frac{dE}{dx}\right\rangle _{relaxation}= & \sum_{pq}D_{pq}\left[\sum_{T}\left(U_{Tp}^{x\ast}f_{tq}+U_{Tq}f_{pt}\right)+\sum_{TI}\left(U_{TI}^{x\ast}\langle pT||qI\rangle+U_{TI}\langle pI||qT\rangle\right)\right]\\
++ & \frac{1}{4}\sum_{pqrs}\tilde{\Gamma}_{pq,rs}\sum_{T}\left[U_{Tp}^{x\ast}\langle Tq||rs\rangle+U_{Tq}^{x\ast}\langle pT||rs\rangle+U_{Tr}^{x}\langle pq||Ts\rangle+U_{Ts}^{x}\langle pq||rT\rangle\right]\\
+= & \sum_{Tp}U_{Tp}^{x\ast}\sum_{q}D_{pq}f_{Tq}+\sum_{Tp}U_{Tp}^{x}\sum_{q}D_{qp}f_{qT}+\sum_{TI}U_{TI}^{x\ast}\sum_{pq}D_{pq}\langle pT||qI\rangle+\sum_{TI}U_{TI}^{x}\sum_{pq}D_{pq}\langle pI||qT\rangle\\
++ & \frac{1}{4}\sum_{Tp}U_{Tp}^{x\ast}\sum_{qrs}\left[\langle Tq||rs\rangle\tilde{\Gamma}_{pq,rs}+\langle qT||rs\rangle\tilde{\Gamma}_{qp,rs}\right]+\frac{1}{4}\sum_{Tr}U_{Tr}^{x}\sum_{pqs}\left[\tilde{\Gamma}_{pq,rs}\langle pq||Ts\rangle+\tilde{\Gamma}_{pq,sr}\langle pq||sT\rangle\right]\\
+= & \sum_{Tp}U_{Tp}^{x\ast}\sum_{q}D_{pq}f_{Tq}+\sum_{Tp}U_{Tp}^{x}\sum_{q}D_{qp}f_{qT}+\sum_{TI}U_{TI}^{x\ast}\sum_{pq}D_{pq}\langle pT||qI\rangle+\sum_{TI}U_{TI}^{x}\sum_{pq}D_{pq}\langle pI||qT\rangle\\
++ & \frac{1}{2}\sum_{Tp}U_{Tp}^{x\ast}\sum_{qrs}\tilde{\Gamma}_{pq,rs}\langle Tq||rs\rangle+\frac{1}{2}\sum_{Tp}U_{Tp}^{x}\sum_{qrs}\tilde{\Gamma}_{rs,pq}\langle rs||Tq\rangle
+\end{aligned}
+
+For orbital relaxation, recall that
+\begin{aligned} & \sum_{TI}U_{TI}^{x\ast}\sum_{pq}D_{pq}\langle pT||qI\rangle+\sum_{TI}U_{TI}^{x}\sum_{pq}D_{pq}\langle pI||qT\rangle\\
+= & \sum_{AI}U_{AI}^{x\ast}\sum_{pq}D_{pq}\langle pA||qI\rangle+\sum_{AI}U_{AI}^{x}\sum_{pq}D_{pq}\langle pI||qA\rangle\\
++ & \sum_{JI}U_{JI}^{x\ast}\sum_{pq}D_{pq}\langle pJ||qI\rangle+\sum_{IJ}U_{IJ}^{x}\sum_{pq}D_{pq}\langle pJ||qI\rangle\\
+= & -\sum_{IJ}S_{IJ}^{x}\sum_{pq}D_{pq}\langle pJ||qI\rangle+\sum_{AI}U_{AI}^{x\ast}\sum_{pq}D_{pq}\langle pA||qI\rangle+\sum_{AI}U_{AI}^{x}\sum_{pq}D_{pq}\langle pI||qA\rangle
+\end{aligned}
+In the last step, we use the normalization condition (see <a href="cphf.html">CPHF equations</a>)
+\[
+    U^{x \ast}_{qp} + U^x_{pq} = - S^x_{pq}
+\]
+for the frozen core orbitals. The orbital relaxation part of the total energy derivative can be further simplified as
+\[
+\left\langle \frac{dE}{dx}\right\rangle _{relaxation}=\left(\sum_{TP}U_{TP}^{x\ast}I_{TP}^{\prime}+c.c.\right)-\sum_{IJ}S_{IJ}^{x}\sum_{pq}D_{pq}\langle pJ||qI\rangle
+\]
+where we have defined the \(I^\prime\) intermediates. If we assume canonical HF orbitals, i.e., \(\frac{dE}{dx}=\sum_{a}\frac{df_{aa}}{dx}D_{aa}+\sum_{i}\frac{df_{ii}}{dx}D_{ii}+\frac{1}{4}\sum_{pqrs}\frac{d\langle pq||rs\rangle}{dx}\tilde{\Gamma}_{pq,rs}\), the non-zero blocks of \(I^\prime\) intermediates are
+\[I_{tp}^{\prime}=\delta_{tp}D_{tt}f_{tt}+\frac{1}{2}\sum_{qrs}\tilde{\Gamma}_{pq,rs}\langle tq||rs\rangle+\sum_{r}D_{rr}\langle rt||rp\rangle\delta_{ta}\delta_{pi}\]
+\[I_{a^{\prime}p}^{\prime}=\frac{1}{2}\sum_{qrs}\tilde{\Gamma}_{pq,rs}\langle a^{\prime}q||rs\rangle+\sum_{r}D_{rr}\langle ra^{\prime}||rp\rangle\delta_{pi}\]
+\[I_{i^{\prime}p}^{\prime}=\frac{1}{2}\sum_{qrs}\tilde{\Gamma}_{pq,rs}\langle i^{\prime}q||rs\rangle\]
+\[I_{Ai^{\prime}}^{\prime}=\sum_{r}D_{rr}\langle rA||ri^{\prime}\rangle\]
+and
+\[\left\langle \frac{dE}{dx}\right\rangle _{relaxation}=\left(\sum_{TP}U_{TP}^{x\ast}I_{TP}^{\prime}+c.c.\right)-\sum_{IJ}S_{IJ}^{x}\sum_{r}D_{rr}\langle rJ||rI\rangle
+\]
+To eliminate the \(U^x_{ia}\) terms and arrive at the Z-vector equation, we use the following relation
+\[U_{ia}^{x\ast}=-S_{ai}^{x}-U_{ai}^{x},U_{i^{\prime}a}^{x\ast}=-S_{ai^{\prime}}^{x}-U_{ai^{\prime}}^{x}
+\] 
+\begin{aligned}\sum_{TP}U_{TP}^{x\ast}I_{TP}^{\prime}+c.c.= & \sum_{other}U_{TP}^{x\ast}I_{TP}^{\prime}+c.c.+\sum_{ia}\left(-S_{ai}^{x}-U_{ai}^{x}\right)I_{ia}^{\prime}+\sum_{i^{\prime}a}\left(-S_{ai^{\prime}}^{x}-U_{ai^{\prime}}^{x}\right)I_{i^{\prime}a}^{\prime}+c.c.\\
+= & \sum_{other}U_{TP}^{x\ast}I_{TP}^{\prime}+c.c.+\sum_{ia}\left(-S_{ai}^{x}I_{ia}^{\prime}-U_{ai}^{x\ast}I_{ia}^{\prime\ast}\right)+\sum_{i^{\prime}a}\left(-S_{ai^{\prime}}^{x}I_{i^{\prime}a}^{\prime}-U_{ai^{\prime}}^{x\ast}I_{i^{\prime}a}^{\prime\ast}\right)+c.c
+\end{aligned}
+By defining 
+\[I_{ai}^{\prime\prime}=I_{ai}^{\prime}-I_{ia}^{\prime\ast},I_{ai^{\prime}}^{\prime\prime}=I_{ai^{\prime}}^{\prime}-I_{i^{\prime}a}^{\prime\ast},I_{ia}^{\prime\prime}=I_{i^{\prime}a}^{\prime\prime}=0\]
+and
+\[I_{TP}^{\prime\prime}=I_{TP}^{\prime}\text{ for other cases},\]
+\[I_{PQ}^{\prime\prime}=0,PQ=ia,i^{\prime}a,i^{\prime}j^{\prime},ij^{\prime},Pa^{\prime},\]
+we have 
+\[\left\langle \frac{dE}{dx}\right\rangle _{relaxation}=\left(\sum_{TP}U_{TP}^{x\ast}I_{TP}^{\prime\prime}+c.c.\right)-\sum_{IJ}S_{IJ}^{x}\sum_{r}D_{rr}\langle rJ||rI\rangle-\left(\sum_{ia}S_{ai}^{x}I_{ia}^{\prime}+\sum_{i^{\prime}a}S_{ai^{\prime}}^{x}I_{i^{\prime}a}^{\prime}+c.c.\right)\]
+Then we are able to write down the corresponding Z-vector equations as (see <a href="cphf.html">CPHF equations</a>)
+\[\left[\begin{array}{cc}
+D^{\prime\ast} & D^{\prime}\end{array}\right]\left[\begin{array}{cc}
+\Delta+A & B\\
+B^{\ast} & \Delta+A^{\ast}
+\end{array}\right]=-\left[\begin{array}{cc}
+I^{\prime\prime\ast} & I^{\prime\prime}\end{array}\right]\] 
+with
+\[\Delta_{pq,rs}=(E_{p}-E_{q})\delta_{pr}\delta_{qs}\]
+\[A_{pq,ai}=\langle pi||qa\rangle\]
+\[B_{pq,ai}=\langle pa||qi\rangle\]
+\[G_{pq}^{x}\equiv f_{pq}^{x}-S_{pq}^{x}E_{q}-\sum_{ij}S_{ij}^{x}\langle pj||qi\rangle\]
+By reformulating the Z-vector equations, we have
+\[D_{PQ}^{\prime}=\frac{I_{PQ}^{\prime\prime}}{f_{QQ}-f_{PP}},PQ=ij,i^{\prime}j,ab,a^{\prime}b\]
+\[D_{PQ}^{\prime}=0,PQ=ia,i^{\prime}a,i^{\prime}j^{\prime},ij^{\prime},Pa^{\prime}\]
+For the coupled AI-block, the Z-vector equations can be written as
+\[\sum_{BJ}D_{BJ}^{\prime\ast}\langle BA||JI\rangle+\sum_{BJ}D_{BJ}^{\prime}\left[(F_{AA}-F_{II})\delta_{AB}\delta_{IJ}+\langle JA||BI\rangle\right]=-X_{AI}\]
+where
+\[X_{AI}=I_{AI}^{\prime\prime}+\sum_{PQ=ij,i^{\prime}j,ab,a^{\prime}b}\left[D_{PQ}^{\prime\ast}\langle PA||QI\rangle+D_{PQ}^{\prime}\langle QA||PI\rangle\right]\]
+Finally, we have
+\begin{aligned}\left\langle \frac{dE}{dx}\right\rangle _{relaxation}= & \left(\sum_{TP}G_{TP}^{x\ast}D_{TP}^{\prime}+c.c.\right)+\sum_{p}D_{pp}f_{pp}^{x}+\frac{1}{4}\sum_{pqrs}\langle pq||rs\rangle^{x}\tilde{\Gamma}_{pq,rs}-\sum_{IJ}S_{IJ}^{x}\sum_{r}D_{rr}\langle rJ||rI\rangle\\
+- & \left(\sum_{ia}S_{ai}^{x}I_{ia}^{\prime}+\sum_{i^{\prime}a}S_{ai^{\prime}}^{x}I_{i^{\prime}a}^{\prime}+c.c.\right)\\
+= & \left(\sum_{TP}f_{PT}^{x}D_{TP}^{\prime}+c.c.\right)+\sum_{p}D_{pp}f_{pp}^{x}+\frac{1}{4}\sum_{pqrs}\langle pq||rs\rangle^{x}\tilde{\Gamma}_{pq,rs}-\sum_{IJ}S_{IJ}^{x}\sum_{r}D_{rr}\langle rJ||rI\rangle\\
+- & \left(\sum_{TP}S_{PT}^{x}f_{PP}D_{TP}^{\prime}+\sum_{IJ}S_{IJ}^{x}\sum_{TP}\langle PJ||TI\rangle D_{TP}^{\prime}+\sum_{ia}S_{ai}^{x}I_{ia}^{\prime}+\sum_{i^{\prime}a}S_{ai^{\prime}}^{x}I_{i^{\prime}a}^{\prime}+c.c.\right)\\
+\equiv & \sum_{PQ}\left(f_{PQ}^{x}D_{PQ}^{\prime\prime}+c.c.\right)+\frac{1}{4}\sum_{pqrs}\langle pq||rs\rangle^{x}\tilde{\Gamma}_{pq,rs}+\sum_{PQ}\left(S_{PQ}^{x}I_{PQ}+c.c.\right)
+\end{aligned}
+with
+\[D_{PQ}^{\prime}=0,PQ=ia,i^{\prime}a,i^{\prime}j^{\prime},ij^{\prime},Pa^{\prime}\]
+\[D_{pq}^{\prime\prime}\equiv D_{qp}^{\prime}+\frac{1}{2}D_{pp}\delta_{pq}\]
+\[D_{PQ}^{\prime\prime}\equiv D_{QP}^{\prime}\text{, for other }PQ\]
+\[I_{IJ}=-D_{JI}^{\prime}f_{II}-\frac{1}{2}\sum_{r}D_{rr}\langle rJ||rI\rangle-\sum_{TP}\langle PJ||TI\rangle D_{TP}^{\prime}\]
+\[I_{aI}=-I_{Ia}^{\prime}-D_{Ia}^{\prime}f_{aa}\]
+\[I_{PQ}=-D_{QP}^{\prime}f_{PP}\text{, for other }PQ\]
+        </p> 
+    </div>
+    <div>
+        <p><a href="notes.html">Back</a></p>
+    </div>
+</body>
+</html>
