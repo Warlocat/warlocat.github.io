@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../all.css">
+    <title>interaction</title>
+    <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h2>Interaction picture</hh1>
+    </div>
+    <div class="main_box">
+        <p>
+Interaction picture is a useful tool in quantum mechanics to simplify the time evolution of operators, particularly in the time-dependent perturbation theory.
+We quickly review this topic here to introduce the Green's function methods.
+<br><br>
+If the Hamiltonian can be split into two parts, \(H = H_0 + H_I\). 
+The time-independent Hamiltonian \(H_0\) is usually solvable. In the language of quantum chemistry, one can image \(H_0\) as the Hamiltonian of a non-interacting system (or interacting at mean-field level) and \(H_I\) as the Coulomb interaction accounting for electron correlation.
+Typically, in the discussion of interaction picture, \(H_I\) is time-dependent. But for our purpose, we will first focus on the time-independent case.
+</p>
+<h4> Interaction picture and time evolution operator</h3>
+<p>
+We define the wave function in the interaction picture as
+\[
+    \left| \Psi_I(t) \right\rangle = e^{iH_0t} \left| \Psi_S(t) \right\rangle
+\]
+where \(\left| \Psi_S(t) \right\rangle\) is the wave function in the Schrödinger picture, i.e., following the time-dependent Schrödinger equation.
+\[
+    i\hbar \frac{d}{dt} \left| \Psi_S(t) \right\rangle = H \left| \Psi_S(t) \right\rangle
+\]
+The time evolution of wave function in interaction picture is thus
+\[
+    i\hbar \frac{d}{dt} \left| \Psi_I(t) \right\rangle 
+    = -H_0 e^{iH_0t/\hbar} \left| \Psi_S(t) \right\rangle + e^{iH_0t/\hbar} H \left| \Psi_S(t) \right\rangle
+    = H_I(t) \left| \Psi_I(t) \right\rangle
+\]
+where 
+\[
+    H_I(t) = e^{iH_0t/\hbar} H_I e^{-iH_0t/\hbar}
+\]
+One has to be carefule that \(H_0\) commutes with itself and thus \(e^{iH_0t/\hbar}\), but \(H_I\) and \(H\) do not. And if \([A,B]\neq0\), we will have \(e^{A+B} \neq e^{A}e^{B}\).
+We can define the operators in the interaction picture as
+\[
+    A_I(t) = e^{iH_0t/\hbar} A e^{-iH_0t/\hbar}
+\]
+The time evolution of operators in the interaction picture can be shown to be
+\[
+    i\hbar \frac{d}{dt} A_I(t) = [A_I(t), H_0]
+\]
+With these, we define the time evolution operator in the interaction picture as
+\[
+   |\Psi_I(t)\rangle =   U_I(t, t_0) |\Psi_I(t_0)\rangle
+\]
+It can easily shown that the time evolution operator in the interaction picture is
+\[
+    U_I(t, t_0) = e^{iH_0t_0/\hbar} e^{-iH(t-t_0)/\hbar} e^{-iH_0t_0/\hbar} 
+\]
+One may recognize that the operator in the middle is the time evolution operator in the Schrödinger picture. 
+It is obvious that the time evolution operator has following properties
+\begin{align*}
+&U_I^\dagger(t,t_0) U_I(t,t_0) = I \\
+&U_I(t,t) = I \\
+&U_I(t_2,t_1) U_I(t_1,t_0) = U_I(t_2,t_0)
+\end{align*}
+We can set up a differential equation for the time evolution operator in the interaction picture by
+\[
+    i\hbar \frac{d}{dt} U_I(t,t_0) |\Psi_I(t_0)\rangle = i\hbar \frac{d}{dt} |\Psi_I(t)\rangle = H_I(t) |\Psi_I(t)\rangle = H_I(t) U_I(t,t_0) |\Psi_I(t_0)\rangle
+\]
+which we have included time \(t\) in the interaction Hamiltonian \(H_I(t)\). We have
+\[
+    i\hbar \frac{d}{dt} U_I(t,t_0) = H_I(t) U_I(t,t_0)
+\]
+and
+\begin{aligned}
+    U_I(t,t_0) & = I - \frac{i}{\hbar} \int_{t_0}^{t} H_I(t') U_I(t',t_0) dt' \\
+    & = I + \left( -\frac{i}{\hbar} \right) \int_{t_0}^{t} H_I(t') dt' + \left( -\frac{i}{\hbar} \right)^2 \int_{t_0}^{t} \int_{t_0}^{t'} H_I(t') H_I(t'')  dt'' dt'+ \cdots
+\end{aligned}
+To get the second line, we have iteratively used the first line to substitute the \(U_I(t',t_0)\) in the integral. For the second term, we have
+\begin{aligned}
+    \int_{t_0}^{t} \int_{t_0}^{t'} H_I(t') H_I(t'') dt'' dt'  &= \frac{1}{2} \int_{t_0}^{t} \int_{t_0}^{t'} H_I(t') H_I(t'')  dt''dt'\\
+    & + \frac{1}{2}\int_{t_0}^{t}\int_{t''}^{t_0}  H_I(t') H_I(t'')  dt'dt''\\
+    &= \frac{1}{2} \int_{t_0}^{t} \int_{t_0}^{t'} H_I(t') H_I(t'')  dt''dt'\\
+    & + \frac{1}{2}\int_{t_0}^{t}\int_{t'}^{t_0}  H_I(t'') H_I(t')  dt''dt'\\
+    &= \frac{1}{2} \int_{t_0}^{t} \int_{t_0}^{t}\left[ \theta(t'-t'')H_I(t')H_I(t'') + \theta(t''-t') H_I(t'') H_I(t') \right]  dt''dt'\\
+    &= \frac{1}{2!} \int_{t_0}^{t} \int_{t_0}^{t}\hat{T} \left\{ H_I(t')H_I(t'') \right\} dt''dt'
+\end{aligned}
+where \(\hat{T}\) is the time-ordering operator and \(\theta(t)\) is the Heaviside step function. We have
+\begin{aligned}
+    U_I(t,t_0) & = \sum_{n=0}^{\infty} \frac{1}{n!} \left( \frac{-i}{\hbar} \right) ^ n \int_{t_0}^t dt_1 \cdots \int_{t_0}^t dt_n \hat{T} \left\{ H_I(t_1)H_I(t_2)\cdots H_I(t_n) \right\} \\
+    &= \hat{T}\left\{ \exp\left( -\frac{i}{\hbar} \int_{t_0}^{t} H_I(t') dt' \right) \right\}
+\end{aligned}
+</p>
+<h4> Adiabatic "switch-on"</h3>
+<p>
+The adiabatic "switch-on" is a useful concept in quantum chemistry to relate a time-independent perturbation problem to a time-dependent one. 
+One way to do this is to define the time-dependent perturbation as
+\[
+    H_I(t) = \theta(t) H_I
+\]
+It means that the perturbation is suddenly "switched on" at time \(t=0\). Instead of switching on the perturbation at \(t=0\), we can choose to switch the perturbation very slowly (adiabatically) from \(t=-\infty\) to \(t=0\).
+Mathematically, we can define the time-dependent perturbation as
+\[
+    H_I(t) = \lim_{\epsilon\rightarrow 0^+} e^{-\epsilon |t|} H_I
+\]
+where \(\epsilon\) is a small positive number. This enforce the perturbation to be zero at \(t=\pm\infty\) and gradually increase to \(H_I\) at \(t=0\).
+<br><br>
+If the system is at some time-indepedent state \(|\Phi_0\rangle\) satisfying \(H_0|\Phi_0\rangle = E_0|\Phi_0\rangle\) at time \(t_0=\pm\infty \), we can define
+\[
+    |\Psi_I(0)\rangle = U_{\epsilon,I}(0, -\infty) |\Phi_0\rangle
+\]
+which is the time evolution of the state \(|\Phi_0\rangle\) under adiabatically switching on the interaction (differs by a phase factor). It can be shown that the state \(|\Psi_I(0)\rangle\) is the eigenstate of the interacting Hamiltonian \(H = H_0 + H_I\). This is called the <a href="https://en.wikipedia.org/wiki/Gell-Mann_and_Low_theorem">Gell-Mann and Low theorem</a>. If the wave function
+\[
+\frac{ U_{\epsilon,I}(0, \pm\infty) |\Phi\rangle}{\langle \Phi_0 |U_{\epsilon,I}(0, \pm\infty) |\Phi\rangle} = \frac{|\Psi_I(0)\rangle}{\langle\Phi_0|\Psi_I(0)\rangle}
+\]
+exists, it is the eigenstate of the interacting Hamiltonian \(H = H_0 + H_I\).
+\[
+    H \frac{|\Psi_I(0)\rangle}{\langle\Phi_0|\Psi_I(0)\rangle} = E \frac{|\Psi_I(0)\rangle}{\langle\Phi_0|\Psi_I(0)\rangle}
+\]
+As a result, we can (in principle) solve the interacting problem by solving the non-interating problem and perform the time evolution under adiabatic "switch-on" using the equation in the last section to evaluate \(U_{\epsilon,I}(0, \pm\infty)\).
+</p> 
+    </div>
+    <div>
+        <p><a href="notes.html">Back</a></p>
+    </div>
+</body>
+</html>
