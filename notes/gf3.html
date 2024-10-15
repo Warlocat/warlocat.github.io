@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../all.css">
+    <title>gf3</title>
+    <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h2>Green's function methods (Part III)</hh1>
+    </div>
+    <div class="main_box">
+<p>
+The main reference is <a href="https://www.lct.jussieu.fr/pagesperso/toulouse/enseignement/introduction_green.pdf">a note by Prof. Julien Toulouse</a>. 
+The Dyson equation is trying to solve Green's function directly without solving the eigenvalues of interacting Hamilonian \( \hat{H}\).
+We start with the derivation of the equation of motion (EOM) for the Green's function. The time evolution of creation and annihilation operators in Heisenberg picture is given by (in a.u.)
+\[
+    i\frac{\partial \hat{a}_k(t)}{\partial t} = \left[ \hat{a}_k(t), \hat{H} \right] = e^{i\hat{H}t} \left[ \hat{a}_k, \hat{H} \right] e^{-i\hat{H}t}
+\]
+The commutator can be calculated since the Hamiltonian is a combination of creation and annihilation operators, \(\hat{H} = \sum_{pq} h_{pq} \hat{a}_p^\dagger \hat{a}_q + \frac{1}{4} \sum_{pqrs} \langle pq||rs\rangle \hat{a}_p^\dagger \hat{a}_q^\dagger \hat{a}_s \hat{a}_r\). One will obtain
+\[
+    \frac{\partial \hat{a}_k(t)}{\partial t} = -i \sum_q h_{kq} \hat{a}_q(t) - i \frac{1}{2} \sum_{qrs} \langle kq||rs\rangle \hat{a}_q^\dagger(t) \hat{a}_s(t) \hat{a}_r(t)
+\]
+We can introduce the notations \(h_{pq}(t) = h_{pq}\) and \(v_{pqrs} (t_1, t_2) = \frac{1}{2} \langle pq||rs \rangle \delta(t_1-t_2) \) for the time-independent quantities. The above equation can be rewritten as
+\[
+    \frac{\partial \hat{a}_k(t_1)}{\partial t_1} = -i \sum_q h_{kq}(t_1) \hat{a}_q(t_1) - i \sum_{qrs} \int dt_3 v_{pqrs}(t_1,t_3) \hat{a}_q^\dagger(t_3) \hat{a}_s(t_3) \hat{a}_r(t_1)
+\]
+or for field operators
+\[
+    \frac{\partial \hat{\psi}(1)}{\partial t_1} = -i h(1) \hat{\psi}(1) - i \int d3 v(1,3) \hat{\psi}^\dagger(3) \hat{\psi}(3) \hat{\psi}(1)
+\]
+Then we can derive the equation of motion for the Green's function 
+\[
+    i\frac{\partial}{\partial t_1}G(1,2) = \delta(1,2) + h(1) G(1,2) -i \int d3 v(1,3) G_2(1,3^+;2,3^{++})
+\]
+or
+\[
+    \left[i\frac{\partial}{\partial t_1} - h(1)\right]G(1,2) + i \int d3 v(1,3) G_2(1,3^+;2,3^{++}) = \delta(1,2)
+\]
+One can formally define self energy \(\Sigma(1,2)\) as
+\[
+    \int d3 \Sigma(1,3)G(3,2) = -i \int d3 v(1,3) G_2(1,3^+;2,3^{++})
+\]
+or
+\[
+    \Sigma(1,4) = -i \int d2 \int d3 v(1,3) G_2(1,3^+;2,3^{++}) G^{-1}(2,4)
+\]
+We have
+\[
+\left[i\frac{\partial}{\partial t_1} - h(1)\right]G(1,2) - \int d3 \Sigma(1,3)G(3,2) = \delta(1,2)
+\]
+In practice, one can start with the Hartree-Fock/Kohn-Sham orbitals. The interaction operator \(v(1,3) \) is then the difference between the exact Hamilonian and the sum of Fock operators. But for derivation, we follow Prof. Toulouse and use the pure one-electron operator \(h(1)\) as the non-interacting part. The EOM of non-interacting Green's function \(G_h\) is thus
+\[
+    \left[i\frac{\partial}{\partial t_1} - h(1)\right]G_h(1,2) = \delta(1,2)
+\]
+We have
+\begin{aligned}
+\left[i\frac{\partial}{\partial t_1} - h(1)\right]G &= \int d3  \int d4 \left[i\frac{\partial}{\partial t_1} - h(1)\right] G_h(1,4) G_h^{-1}(4,3) G(3,2)\\
+&= \int d3  G_h^{-1}(1,3) G(3,2)
+\end{aligned}
+and
+\[
+\int d3  G_h^{-1}(1,3) G(3,2) - \int d3 \Sigma(1,3)G(3,2) = \delta(1,2)
+\]
+Multiply \(G_h(4,1)\) from the left, integrate over \(d1\), and rename some variables. We can obtain the Dyson equation
+\[
+    G(1,2) = G_h(1,2) + \int d3 \int d4 G_h(1,3) \Sigma(3,4) G(4,2)
+\]
+or an equivalent form
+\[
+    G^{-1}(1,2) = G_h^{-1}(1,2) - \Sigma(1,2)
+\]
+The Dyson equation enables us to solve the Green's function directly with the non-intercting Green's function and the self energy. The self energy, in practice, can be obtained with various approximations.
+<br><br>
+Due to the time-translation symmetry, the self energy is a function of the time difference \(\tau\) just like the Green's function. We can also write the self energy in quantum-chemistry notation as
+\[
+i\frac{\partial}{\partial t_1}G_{kl}(\tau) - \sum_q h_{kq}G_{ql}(\tau) - \int dt_3 \sum_m \Sigma_{km}(t_1 - t_3)G_{ml}(t_3-t_2) = \delta(\tau) \delta_{kl}
+\]
+The Fourier transformation of the above equation gives the frequency-domain self energy (using the convolution theorem)
+\[
+\omega G_{kl}(\omega) - \sum_q h_{kq}G_{ql}(\omega) - \sum_m \Sigma_{km}(\omega)G_{ml}(\omega) = \delta_{kl}
+\]
+Insert the Lehmann representation of the Green's function into above equation and select one term corresponding to a given electron attachment pole \(\omega_a\) by multiplying \(\omega - \omega_a\) and taking the limit \(\omega \rightarrow \omega_a\). We have
+\[
+    \omega_a f_k^{(a)} f_l^{(a)*} - \sum_q h_{kq} f_q^{(a)} f_l^{(a)*} - \sum_m \Sigma_{km}(\omega_a) f_m^{(a)} f_l^{(a)*} = 0
+\]
+where \(f_k^{(a)} = \langle\Psi_0^N|\hat{a}_k|\Psi_a^{N+1}\rangle\) is the Lehmann amplitudes or Dyson orbitals. Remove the common factor \(f_l^{(a)*}\) and we have an eigenvalue equation
+\[
+    \sum_q \left[ h_{kq} + \Sigma_{kq}(\omega_a) \right] f_q^{(a)} = \omega_a f_k^{(a)}
+\]
+or its field operator form
+\[
+    h(r_1) f(x_1) + \int dx_2 \Sigma(x_1, x_2, \omega_a) f(x_2) = \omega_a f(x_1)
+\]
+This is the quasiparticle equation that gives the quasiparticle energies and the corresponding Dyson orbitals, again, as long as the self energy is known. As we can see, the self energy plays the role of non-local electron correlation in the quasiparticle picture.
+</p> 
+    </div>
+    <div>
+        <p><a href="notes.html">Back</a></p>
+    </div>
+</body>
+</html>
