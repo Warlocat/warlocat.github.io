@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../all.css">
+    <title>gf1</title>
+    <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h2>Green's function methods (Part I)</hh1>
+    </div>
+    <div class="main_box">
+<p>
+We will discuss Green's function methods in different perspectives. Finally one can see those are equivalent.
+The Part I will focus on the simplest mathematical definition related to the differential equations in quantum mechanics. This note is just a rephrased version of the Section 7.1 from the famous book by 
+<a href="https://chemistlibrary.wordpress.com/wp-content/uploads/2015/02/modern-quantum-chemistry.pdf">Szabo and Ostlund</a>. 
+<br><br>
+Suppose we want to solve the matrix equation with a parameter \( E \):
+\[
+ (EI - H_0) a = b
+\]
+We can write the solution as:
+\[
+ a_i = \sum_j G_0(E)_{ij} b_j
+\]
+\[
+    G_0(E) \equiv (EI - H_0)^{-1}
+\]
+The question reduces to how to find the \( G_0(E) \).
+If we already know the eigenvalues and eigenvectors of the (Hermitian) matrix/operator \( H_0 \),
+\[H_0 C = C E^{(0)}, C^\dagger C = I\], then we can write the Green's function as:
+\[
+ G_0(E) = \left( EI - CE^{(0)}C^\dagger \right)^{-1}=C\left( EI - E^{(0)} \right)^{-1}C^\dagger
+\]
+or
+\[
+    G_0(E)_{ij} = \sum_k \frac{C_{ik}C_{jk}^*}{E - E^{(0)}_k}
+\]
+We now refer to \( G_0(E) \) as the Green's matrix associated with the matrix \( H_0 \).
+<br><br>
+Similarly, for a differential equation,
+\[
+    (E-\hat{H}_0)a(x) = b(x)
+\]
+if we know the eigenfunctions of the operator, \( \hat{H}_0 \phi_k(x)= E^{(0)}_k \phi_k(x) \), we can expand \( a(x) \) and \(b(x)\) in terms of the eigenfunctions:
+\[
+    a(x) = \sum_k a_k \phi_k(x)
+\]
+\[
+    b(x) = \sum_k b_k \phi_k(x)
+\]
+The original differential equation can be written as:
+\[
+    \left( E - \hat{H}_0 \right) \sum_k a_k \phi_k(x) = \sum_k b_k \phi_k(x)
+\]
+Left-project the equation with \( \phi_i(x) \) and integrate, we have:
+\[
+    a_i = \frac{b_i}{E-E_i^{(0)}}
+\]
+and
+\begin{aligned}
+    a(x) &= \sum_k \frac{b_k}{E-E_k^{(0)}} \phi_k(x)\\
+         &= \sum_k \frac{\int dx' \phi_k^*(x')b(x')}{E-E_k^{(0)}} \phi_k(x)\\
+         &= \int dx' \left[ \sum_k \frac{\phi_k^*(x')\phi_k(x)}{E-E_k^{(0)}} \right] b(x')\\
+         &\equiv \int dx' G_0(x,x',E)b(x')
+\end{aligned}
+, where \( G_0(x,x',E) \) is defined as the Green's function associated with the operator \( \hat{H}_0 \).
+If \(b(x) = \delta(x-x')\), we have:
+\[
+    a(x) = \int dx'' G_0(x,x'',E) \delta(x''-x') = G_0(x,x',E)
+\]
+\[
+    (E-\hat{H}_0)G_0(x,x',E) = \delta(x-x')
+\]
+This is the operator analog of the matrix equation \((E-\hat{H}_0)G_0(E) = I \).
+<br><br>
+Now the problem is how to find the Green's function \( G(x,x',E) \) for a given operator \( \hat{H} \), or Hamiltonian. 
+We can image this problem as if we have solved the unperturbed problem, \( \hat{H}_0 \), and we want to know how the solution when we add a perturbation, \( \hat{V} \), to the Hamiltonian:
+\[
+    \hat{H} = \hat{H}_0 + \hat{V}
+\]
+We will turn back to the "real" quantum chemistry problem in the Part II.
+The Green's function associated with the operator \( \hat{H} \) satisfies
+\[
+    (E-\hat{H}_0 - \hat{V})G(x,x',E) = \delta(x-x')
+\]
+\[
+    (E-\hat{H}_0)G(x,x',E) = \delta(x-x') + \hat{V}(x)G(x,x',E)
+\]
+We have
+\begin{aligned}
+    G(x,x',E) &= \int dx'' G_0(x,x'',E)\left[\delta(x''-x') \hat{V}(x'')G(x'',x',E)\right]\\
+    & = G_0(x,x',E) + \int dx'' G_0(x,x'',E)\hat{V}(x'')G(x'',x',E)
+\end{aligned}
+One can iteratively substitute the solution into the \(G(x'',x',E)\) in the second line to get a infinite expansion.
+It is very similar to the expansion of time-evolution operator (see <a href="int_pic.html">interaction picture</a>). 
+<br><br>
+One can also obtain the time-domain Green's function by Fourier transformation (\(\omega= E/\hbar\)) 
+\[
+    G(x,x',t) \equiv \frac{1}{2\pi} \int d\omega e^{-i\omega t} G(x,x',E), t\neq 0
+\]
+\[
+    G(x,x',0) = \delta(x-x')
+\]
+If we define \(\phi(x,t) = \int dx' G(x,x',t) \psi(x') \) and \(\phi(x,0)=\psi(x)\), we can see it satisfies the time-dependent Schrödinger equation:
+\begin{aligned}
+    i\hbar \frac{\partial}{\partial t}  \phi(x,t)
+      &= \int dx' \frac{1}{2\pi} \int d\omega \left[  E G(x,x',E) e^{-iEt/\hbar} \right] \psi(x')   \\
+    & = \hat{H} \int dx' G(x,x',t) \psi(x') = \hat{H} \phi(x,t)
+\end{aligned}
+As a result, if we have any wavefunction \(\psi(x)\), the time-domain Green's function can be used to calculate its time evolution \(\phi(x,t)\). The Green's function in time domain is thus also called the propagator.
+
+</p> 
+    </div>
+    <div>
+        <p><a href="notes.html">Back</a></p>
+    </div>
+</body>
+</html>
