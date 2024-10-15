@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../all.css">
+    <title>gf2</title>
+    <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h2>Green's function methods (Part II)</hh1>
+    </div>
+    <div class="main_box">
+<p>
+This part of notes is "unrelated" to the previous part. The main reference is <a href="https://www.lct.jussieu.fr/pagesperso/toulouse/enseignement/introduction_green.pdf">a note by Prof. Julien Toulouse</a> and <a href="https://store.doverpublications.com/products/9780486428277?srsltid=AfmBOoqAunSnG7ViBjLWqRqRs7ucOjTPV7H79hHsbknRl97xau08l-fQ">the book by Prof. Fetter and Prof. Walecka</a>.
+
+We start with a "new" definition of the one-particle Green's function (in time domain) for given N-particle wavefunction \( | \Psi^N \rangle \):
+\[
+    iG(x_1,t_1,x_2,t_2) = \langle \Psi^N | \hat{T} \left[ \hat{\psi}(x_1,t_1) \hat{\psi}^\dagger(x_2,t_2) \right] | \Psi^N \rangle
+\]
+where \( \hat{\psi} (x,t) \) and \( \hat{\psi}^\dagger  (x,t) \) are the annihilation and creation operators in the Heisenberg picture, \( \hat{\psi} (x,t) = e^{i\hat{H}t} \psi(x) e^{-i\hat{H}t} \), and \( \hat{T} \) is the time-ordering operator. 
+We will change back to creation and annihilation operators in quantum chemistry notation later.
+For simplicity, use indices 1 and 2 to represent the space-time coordinates \( (x_1,t_1) \) and \( (x_2,t_2) \), respectively. It can also include the spin degrees of freedom for non-relativistic theories.
+We have
+\begin{aligned}
+    iG(1,2) & = \langle \Psi^N | \hat{T} \left[ \hat{\psi}(1) \hat{\psi}^\dagger(2) \right] | \Psi^N \rangle \\
+    & = \theta(t_1-t_2) \langle \Psi^N | \hat{\psi}(1) \hat{\psi}^\dagger(2) | \Psi^N \rangle - \theta(t_2-t_1) \langle \Psi^N | \hat{\psi}^\dagger(2) \hat{\psi}(1) | \Psi^N \rangle
+\end{aligned}
+We already know that Green's function is very useful in the last part. The time-domain Green's function can propagate the wavefunction in time while the poles of energy-domian/frequency-domain Green's function can provide one-particle eigenvalues.
+It should also be mentioned that the Green's function is a time-dependent extension of the one-particle density matrix
+\[
+    n(x_1,x_2) = \langle \Psi^N | \hat{\psi}^\dagger(x_2) \hat{\psi}(x_1) | \Psi^N \rangle = -iG(x_1,t,x_2,t^+)
+\]
+where \( t^+ = t + 0^+ \) and \( 0^+ \) is a positive infinitesimal. Any one-particle property can thus be calculated from the Green's function.
+<br><br>
+If the Hamiltonian is time-independent and \(|\Psi^N_0\rangle\) is the ground state with eigenvalue \(E_0\), the Green's function can be written as:
+\[
+    iG(x_1,t_1,x_2,t_2) = \left\{ \begin{array}{l} 
+    e^{iE_0(t_1 -t_2)/\hbar} \langle \Psi^N_0 | \hat{\psi}(x_1) e^{-i\hat{H}(t_1 -t_2)/\hbar} \hat{\psi}^\dagger(x_2) | \Psi^N_0 \rangle \quad \text{if } t_1 > t_2 \\
+    \\ -e^{-iE_0(t_1 -t_2)/\hbar} \langle \Psi^N_0 | \hat{\psi}^\dagger(x_2) e^{i\hat{H}(t_1 -t_2)/\hbar} \hat{\psi}(x_1) | \Psi^N_0 \rangle \quad \text{if } t_2 > t_1
+    \end{array} \right.
+\]
+It can be seen that the Green's function only depends on the time difference \( t_1 - t_2 \). We now change to the quantum chemistry notation and use the resolution of identity for \(N-1\) and \(N+1\) particle states:
+\begin{aligned}
+    iG_{km}(\tau) & = \langle \Psi^N_0 | \hat{T} \left[ \hat{a}_k(t_1) \hat{a}_m^\dagger(t_2) \right] | \Psi^N_0\rangle    \\
+    & = \theta(\tau) e^{iE_0\tau/\hbar}  \langle \Psi^N_0 | \hat{a}_k e^{-i\hat{H}t_1/\hbar}\sum_k |\Psi_k^{N+1} \rangle\langle \Psi_k^{N+1}| e^{i\hat{H}t_2/\hbar} a_m^\dagger | \Psi^N_0\rangle \\
+    & - \theta(-\tau) e^{-iE_0\tau/\hbar}  \langle \Psi^N_0 | \hat{a}_m^\dagger e^{i\hat{H}t_2/\hbar}\sum_k |\Psi_k^{N-1} \rangle\langle \Psi_k^{N-1}| e^{-i\hat{H}t_1/\hbar} a_k | \Psi^N_0\rangle\\
+    & = \sum_k \theta(\tau) e^{-i(E^{N+1}_k-E_0)\tau/\hbar}  \langle \Psi^N_0 | \hat{a}_k |\Psi_k^{N+1} \rangle\langle \Psi_k^{N+1}| a_m^\dagger | \Psi^N_0\rangle \\
+    & - \sum_k \theta(-\tau) e^{i(E^{N-1}_k-E_0)\tau/\hbar}  \langle \Psi^N_0 | \hat{a}_m^\dagger |\Psi_k^{N-1} \rangle\langle \Psi_k^{N-1}| a_k | \Psi^N_0\rangle
+\end{aligned}
+To obtain the frequency-domain Green's function, we can perform the Fourier transformation for \(G(\tau)\). With
+\[
+    \theta(\tau) =- \int_{-\infty}^{\infty} \frac{d\omega}{2\pi i} \frac{e^{-i\omega\tau}}{\omega + i0^+}
+\]
+and
+\[
+    \theta(-\tau) = \int_{-\infty}^{\infty} \frac{d\omega}{2\pi i} \frac{e^{-i\omega\tau}}{\omega - i0^+}
+\]
+and defining the characteristic frequencies for electron affinity and ionization potential as \( \omega_a = (E^{N+1}_a - E_0)/\hbar \) and \( \omega_i = (E_0 - E^{N-1}_i)/\hbar \),
+we have
+\[
+   -i \int_{-\infty}^{\infty} d\tau \theta(\tau) e^{-i\omega_a \tau} e^{i\omega\tau} = \frac{1}{\omega - \omega_a + i0^+}
+\]
+\[
+    i\int_{-\infty}^{\infty} d\tau \theta(-\tau)e^{-i\omega_i \tau} e^{i\omega\tau} = \frac{1}{\omega - \omega_i - i0^+}
+\]
+and
+\[
+    G_{km}(\omega) = \sum_a \frac{\langle \Psi^N_0 | \hat{a}_k |\Psi_a^{N+1} \rangle\langle \Psi_a^{N+1}| a_m^\dagger | \Psi^N_0\rangle}{\omega - \omega_a + i0^+} + \sum_i \frac{\langle \Psi^N_0 | \hat{a}_m^\dagger |\Psi_i^{N-1} \rangle\langle \Psi_i^{N-1}| a_k | \Psi^N_0\rangle}{\omega - \omega_i - i0^+}
+\]
+The above expression is usually referred to as the Lehmann representation of the Green's function, where \( \langle \Psi^N_0 | \hat{a}_k |\Psi_a^{N+1} \rangle\) nad \(\langle \Psi_i^{N-1}| a_k | \Psi^N_0\rangle\) are usually called the Dyson orbitals or Lehmann amplitudes or quasiparticle wave function. We can see that the Green's function has poles at the quasiparticle energies, i.e., the ionization potential and electron affinity of N-particle systems.
+<br><br>
+Similar to the one-particle Green's function, the two-particle Green's function can be defined as
+\[
+    i^2 G_2(1,2;1',2') = \langle \Psi^N | \hat{T} \left[ \hat{\psi}(1) \hat{\psi}(2) \hat{\psi}^\dagger(2') \hat{\psi}^\dagger(1') \right] | \Psi^N \rangle
+\]
+One can also define the four-point linear response function as
+\[
+    i\chi(1,2;1',2') = i^2 G_2(1,2;1',2') - iG(1,1')iG(2,2')
+\]
+It is easily seen that the two-particle Green's function and the linear response function are the time-dependent extension of the two-particle density matrix. The four-point linear response function can be used to describe two particles, two holes, or one particle and one hole processes. 
+Let's focus on the particle-hole linear response function (or polarization propagator or simply linear response function) defined for ground state and quantum chemistry notation:
+\begin{aligned}
+    i\chi_{klmn}(t_1,t_2;t_1^+ t_2^+) &= \langle \Psi^N_0 | \hat{T} \left[ \hat{a}_n^\dagger(t_1) \hat{a}_k(t_1) \hat{a}_m^\dagger(t_2) \hat{a}_l(t_2) \right] | \Psi^N_0 \rangle\\
+    &-\langle \Psi^N_0 | \hat{a}_n^\dagger(t_1) \hat{a}_k(t_1) | \Psi^N_0 \rangle \langle \Psi^N_0 | \hat{a}_m^\dagger(t_2) \hat{a}_l(t_2) | \Psi^N_0 \rangle
+\end{aligned}
+By using the time difference \(\tau\) and resolution-of-identity for \(N\)-particle systems, we have
+\begin{aligned}
+    i\chi_{klmn}(\tau) &= \sum_{n\neq 0} \theta(\tau) \langle \Psi_0^N | \hat{a}_n^\dagger \hat{a}_k |\Psi_n^N\rangle\langle \Psi_n^N | \hat{a}_m^\dagger \hat{a}_l | \Psi_0^N \rangle e^{-i(E_n-E_0)\tau/\hbar}\\
+    &+ \sum_{n\neq 0} \theta(-\tau) \langle \Psi_0^N | \hat{a}_m^\dagger \hat{a}_l |\Psi_n^N\rangle\langle \Psi_n^N | \hat{a}_n^\dagger \hat{a}_k | \Psi_0^N \rangle e^{i(E_n-E_0)\tau/\hbar}
+\end{aligned}
+Similarly, we can define the frequency for excitation energy as \(\omega_{n} = (E_n - E_0)/\hbar\), and the frequency-domain linear response function can be written as
+\[
+    \chi_{klmn}(\omega) = \sum_{n\neq 0} \frac{\langle \Psi_0^N | \hat{a}_n^\dagger \hat{a}_k |\Psi_n^N\rangle\langle \Psi_n^N | \hat{a}_m^\dagger \hat{a}_l | \Psi_0^N \rangle}{\omega - \omega_n + i0^+} - \sum_{n\neq 0} \frac{\langle \Psi_0^N | \hat{a}_m^\dagger \hat{a}_l |\Psi_n^N\rangle\langle \Psi_n^N | \hat{a}_n^\dagger \hat{a}_k | \Psi_0^N \rangle}{\omega + \omega_n - i0^+}
+\]
+Therefore, the frequency-domain particle-hole response function has poles at the excitation energies of the N-particle system. One can also define the independent-particle four-point response function (please see <a href="https://www.lct.jussieu.fr/pagesperso/toulouse/enseignement/introduction_green.pdf">ref</a>) and relate it to the fundamental gap of the system, \( \Delta E = E_{\text{IP}} - E_{\text{EA}} \).
+</p> 
+    </div>
+    <div>
+        <p><a href="notes.html">Back</a></p>
+    </div>
+</body>
+</html>
