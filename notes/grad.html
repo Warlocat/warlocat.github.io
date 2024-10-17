@@ -8,13 +8,26 @@
     <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <div class="header">
-        <h2>Analytical gradients for electron-correlation methods</hh1>
-    </div>
-    <div class="main_box">
-        <p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/notes/notes.html">Notes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+          </div>
+        </div>
+      </nav>
+  
+      <div class="container my-5">
+        <h1>Analytical gradients for electron-correlation methods</h1>
+        <div class="col-lg-8 px-0">
+<p class="fs-5">
 We follow the notations in
 <a href="https://doi.org/10.1063/5.0038779">J. Chem. Phys. 154, 064110 (2021)</a>. In this note, we use \(ij\dots,ab\dots,pq\dots\) for correlated orbitals, \(i^{\prime}j^{\prime}\dots,a^{\prime}b^{\prime}\dots,p^{\prime}q^{\prime}\dots\) for frozen core and frozen virtual orbitals, and \(IJ\dots,AB\dots,PQ\dots\) for all orbitals. This derivation has explicitly considered complex-valued integrals and frozen core/virtual orbitals.
 From the definition of the \(I^\prime\) intermediates, we have assumed canonical HF orbitals.
@@ -123,10 +136,11 @@ with
 \[I_{IJ}=-D_{JI}^{\prime}f_{II}-\frac{1}{2}\sum_{r}D_{rr}\langle rJ||rI\rangle-\sum_{TP}\langle PJ||TI\rangle D_{TP}^{\prime}\]
 \[I_{aI}=-I_{Ia}^{\prime}-D_{Ia}^{\prime}f_{aa}\]
 \[I_{PQ}=-D_{QP}^{\prime}f_{PP}\text{, for other }PQ\]
-        </p> 
+<br><br>
+<a href="notes.html">Back</a>
+</p> 
+      </div>
     </div>
-    <div>
-        <p><a href="notes.html">Back</a></p>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -8,13 +8,26 @@
     <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <div class="header">
-        <h2>Green's function methods (Part III)</hh1>
-    </div>
-    <div class="main_box">
-<p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/notes/notes.html">Notes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+          </div>
+        </div>
+      </nav>
+  
+      <div class="container my-5">
+        <h1>Green's function methods (Part III)</h1>
+        <div class="col-lg-8 px-0">
+<p class="fs-5">
 The main reference is <a href="https://www.lct.jussieu.fr/pagesperso/toulouse/enseignement/introduction_green.pdf">a note by Prof. Julien Toulouse</a>. 
 The Dyson equation is trying to solve Green's function directly without solving the eigenvalues of interacting Hamilonian \( \hat{H}\).
 We start with the derivation of the equation of motion (EOM) for the Green's function. The time evolution of creation and annihilation operators in Heisenberg picture is given by (in a.u.)
@@ -97,10 +110,11 @@ or its field operator form
     h(r_1) f(x_1) + \int dx_2 \Sigma(x_1, x_2, \omega_a) f(x_2) = \omega_a f(x_1)
 \]
 This is the quasiparticle equation that gives the quasiparticle energies and the corresponding Dyson orbitals, again, as long as the self energy is known. As we can see, the self energy plays the role of non-local electron correlation in the quasiparticle picture.
+<br><br>
+<a href="notes.html">Back</a>
 </p> 
+      </div>
     </div>
-    <div>
-        <p><a href="notes.html">Back</a></p>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

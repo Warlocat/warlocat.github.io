@@ -1,18 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../all.css">
-    <title>Relativistic contracted basis sets</title>
-</head>
-<body>
-    <div class="header">
-        <h2>Recontracted basis sets with spin-free and spin-orbit relativistic Hamiltonian</hh1>
-    </div>
-    <div class="main_box">
-        <p>The relativistic basis sets are recontracted correlation-consistent and Dyall's basis sets with spin-free exact two-component theory in its one-electron variant (the SFX2C-1e scheme) and X2C with atomic-mean-field spin-orbit integral (the X2CAMF scheme).</p>
-        <p>Take <math><mrow><mn>2</mn><mi>p</mi></mrow></math> orbitals of a heavy atom as an example. 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>basis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">Chaoqun Zhang's Personal Website</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/cv.html">About me</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/research.html">My research</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/basis/basis.html">Basis sets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/notes/notes.html">Notes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/bzym/bzym.html">Games</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-5">
+      <h1>Relativistic Contracted basis sets</h1>
+      <div class="col-lg-8 px-0">
+        <p class="fs-5">The relativistic basis sets are recontracted correlation-consistent and Dyall's basis sets with spin-free exact two-component theory in its one-electron variant (the SFX2C-1e scheme) and X2C with atomic-mean-field spin-orbit integral (the X2CAMF scheme).</p>
+        <p class="fs-5">Take <math><mrow><mn>2</mn><mi>p</mi></mrow></math> orbitals of a heavy atom as an example. 
         In non-relativistic and scalar-relativistic calculations, the three (six with spin) <math><mrow><mn>2</mn><mi>p</mi></mrow></math> orbitals are degenerate. They share the same set of contraction coefficients. 
         In contrast, in calculations with spin-orbit interaction included at mean-field level, the two
         <math>
@@ -47,11 +74,11 @@
         contracted in the contracted spin-orbit basis sets.
         </p>
 
-        <p><b>To use the spin-orbit contracted basis sets, you must have a program with j-adapted contraction feature. This is supported by CFOUR and PySCF.
+        <p class="fs-5"><b>To use the spin-orbit contracted basis sets, you must have a program with j-adapted contraction feature. This is supported by CFOUR and PySCF.
         Please cite the original publications of correlation-consistent or Dyall's basis sets as well as the <a href="https://doi.org/10.1063/5.0217762">new contraction scheme paper</a>.</b></p>
 
-        <p>All the relativistic contracted basis sets  in CFOUR format can be downloaded <a href="GENBAS">here</a>.</p>
-        <p>For PySCF users, the basis sets in CFOUR format can be accessed using python external library <a href="https://github.com/xubwa/socutils">socutils</a>. An example calculation can be found <a href="example.py">here</a>.</p>
+        <p class="fs-5">All the relativistic contracted basis sets  in CFOUR format can be downloaded <a href="GENBAS">here</a>.</p>
+        <p class="fs-5">For PySCF users, the basis sets in CFOUR format can be accessed using python external library <a href="https://github.com/xubwa/socutils">socutils</a>. An example calculation can be found <a href="example.py">here</a>.</p>
 
         <label for="findBasis">Find specific basis sets: (NOT WORKING YET)</label>
         <div id="findBasis" style="flex-direction: row;">
@@ -210,9 +237,10 @@
             </select>
             <button>Search</button>
         </div>
-        <div>
-            <p><a href="../index.html">Back to home</a></p>
-        </div>
+      </div>
     </div>
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+  </body>
 </html>

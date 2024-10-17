@@ -8,13 +8,26 @@
     <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <div class="header">
-        <h2>Green's function methods (Part I)</hh1>
-    </div>
-    <div class="main_box">
-<p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/notes/notes.html">Notes</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+          </div>
+        </div>
+      </nav>
+  
+      <div class="container my-5">
+        <h1>Green's function methods (Part I)</h1>
+        <div class="col-lg-8 px-0">
+<p class="fs-5">
 We will discuss Green's function methods in different perspectives. Finally one can see those are equivalent.
 The Part I will focus on the simplest mathematical definition related to the differential equations in quantum mechanics. This note is just a rephrased version of the Section 7.1 from the famous book by 
 <a href="https://store.doverpublications.com/products/9780486691862?_pos=1&_sid=33bef9a69&_ss=r">Szabo and Ostlund</a>. 
@@ -113,11 +126,11 @@ If we define \(\phi(x,t) = \int dx' G(x,x',t) \psi(x') \) and \(\phi(x,0)=\psi(x
     & = \hat{H} \int dx' G(x,x',t) \psi(x') = \hat{H} \phi(x,t)
 \end{aligned}
 As a result, if we have any wavefunction \(\psi(x)\), the time-domain Green's function can be used to calculate its time evolution \(\phi(x,t)\). The Green's function in time domain is thus also called the propagator.
-
+<br><br>
+<a href="notes.html">Back</a>
 </p> 
+      </div>
     </div>
-    <div>
-        <p><a href="notes.html">Back</a></p>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

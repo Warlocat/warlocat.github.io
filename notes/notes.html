@@ -1,84 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../all.css">
-    <title>Notes</title>
-</head>
-<body>
-    <div class="header">
-        <h2>Notes on quantum chemistry topics</hh1>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>note</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/notes/notes.html">Notes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-5">
+      <h1>Notes on quantum chemistry</h1>
+      <div class="col-lg-8 px-0">
+        <p class="fs-5">I have summarized some of my notes on various quantum chemistry topics for future reference.
+        </p>
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Analytical energy gradients:
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>
+                    <a href="cphf.html">Coupled-perturbed Hartree-Fock equations</a>
+                    <br>
+                    <a href="grad.html">Analytical gradients for electron-correlation methods</a>
+                    </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Excited states and Green's function methods
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <p>
+                    <a href="lr.html">Linear response (LR) theory</a>
+                    <br>
+                    <a href="tdhf.html">LR time-dependent Hartree-Fock theory (density matrices)</a>
+                    <br>
+                    <a href="int_pic.html">Interaction picture and adiabatic "switch on"</a>
+                    <br>
+                    <a href="gf1.html">Green's function methods I: mathematical definition</a>
+                    <br>
+                    <a href="gf2.html">Green's function methods II: in quantum chemsitry</a>
+                    <br>
+                    <a href="gf3.html">Green's function methods III: Dyson equation</a>
+                    <br>
+                    <a href="">Green's function methods IV: Bethe-Salpeter equation (NOT available)</a>
+                    <br>
+                    <a href="gf5.html">Green's function methods V: Hartree-Fock Green's function and re-derivation of TDHF</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Embedding theories (NOT available)
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>
+                        <a href="">Density matrix embedding theory (DMET)</a>
+                        <br>
+                        <a href="">Dynamic mean-field theory (DMFT)</a>
+                        <br>
+                        <a href="">Projection-based embedding</a>
+                    </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Theories for periodic boundary condition (NOT available)
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>
+                        <a href="">k-points sampling</a>
+                    </p>
+                </div>
+              </div>
+          </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Numerical algorithms in quantum chemistry (NOT available)
+                </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>
+                        <a href="">Davidson algorithm</a>
+                        <br>
+                        <a href="">A "GMRES-like" algorithm by Pople</a>
+                    </p>
+                </div>
+                </div>
+      </div>
     </div>
-    <div class="main_box">
-        <p>I have summarized some of my notes on various quantum chemistry topics for future reference.
-        </p>
-        <p>
-        Analytical energy gradients:
-        <br>
-        <a href="cphf.html">Coupled-perturbed Hartree-Fock equations</a>
-        <br>
-        <a href="grad.html">Analytical gradients for electron-correlation methods</a>
-        </p>
 
-        <p>
-        Excited states and Green's function methods:
-        <br>
-        <a href="lr.html">Linear response (LR) theory</a>
-        <br>
-        <a href="tdhf.html">LR time-dependent Hartree-Fock theory (density matrices)</a>
-        <br>
-        <a href="int_pic.html">Interaction picture and adiabatic "switch on"</a>
-        <br>
-        <a href="gf1.html">Green's function methods I: mathematical definition for one-electron operator </a>
-        <br>
-        <a href="gf2.html">Green's function methods II: one- and two-particle Green's function in quantum chemsitry</a>
-        <br>
-        <a href="gf3.html">Green's function methods III: Dyson equation</a>
-        <br>
-        <a href="">Green's function methods IV: Derivation of Bethe-Salpeter equation (BSE) (NOT available)</a>
-        <br>
-        <a href="gf5.html">Green's function methods V: Hartree-Fock Green's function and re-derivation of TDHF</a>
-        <br>
-        <a href="">Random phase approximation (RPA) (NOT available)</a>
-        </p>
-
-        <p>
-        Embedding theories (NOT available):
-        <br>
-        <a href="">Density matrix embedding theory (DMET)</a>
-        <br>
-        <a href="">Dynamic mean-field theory (DMFT)</a>
-        <br>
-        <a href="">Projection-based embedding</a>
-        </p>
-
-        <p>
-        Theories for periodic boundary condition (NOT available):
-        <br>
-        <a href="">k-points sampling</a>
-        </p>
-
-        <p>
-        Numerical algorithms in quantum chemistry (NOT available):
-        <br>
-        <a href="">Davidson algorithm</a>
-        <br>
-        <a href="">A "GMRES-like" algorithm by Pople</a>
-        </p>
-
-        <p>
-        Relativistic quantum chemistry (NOT available):
-        <br>
-        <a href="">Spin-separation</a>
-        <br>
-        <a href="">Kinetic balance condition</a>
-        <br>
-        <a href="">Exact two-component (X2C) theory</a>
-        </p>
-    </div>
-    <!-- <div>
-        <p><a href="../index.html">Back to home</a></p>
-    </div> -->
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+  </body>
 </html>
