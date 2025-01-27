@@ -115,7 +115,7 @@ with
 \[A_{pq,ai}=\langle pi||qa\rangle\]
 \[B_{pq,ai}=\langle pa||qi\rangle\]
 \[G_{pq}^{x}\equiv f_{pq}^{x}-S_{pq}^{x}E_{q}-\sum_{ij}S_{ij}^{x}\langle pj||qi\rangle\]
-By reformulating the Z-vector equations, we have
+By reformulating the Z-vector equations, we have (for\(P\neq Q\))
 \[D_{PQ}^{\prime}=\frac{I_{PQ}^{\prime\prime}}{f_{QQ}-f_{PP}},PQ=ij,i^{\prime}j,ab,a^{\prime}b\]
 \[D_{PQ}^{\prime}=0,PQ=ia,i^{\prime}a,i^{\prime}j^{\prime},ij^{\prime},Pa^{\prime}\]
 For the coupled AI-block, the Z-vector equations can be written as
@@ -136,6 +136,10 @@ with
 \[I_{IJ}=-D_{JI}^{\prime}f_{II}-\frac{1}{2}\sum_{r}D_{rr}\langle rJ||rI\rangle-\sum_{TP}\langle PJ||TI\rangle D_{TP}^{\prime}\]
 \[I_{aI}=-I_{Ia}^{\prime}-D_{Ia}^{\prime}f_{aa}\]
 \[I_{PQ}=-D_{QP}^{\prime}f_{PP}\text{, for other }PQ\]
+
+One last thing, the CPHF equation can only solve the response for non-degenerate orbitals (similar to non-degenerate perturbation theory). For degenerate (or identical) orbitals, we set the response \(U_{ii}^{\chi}=-\frac{1}{2}S_{ii}^{\chi}\). This leads to extra terms for the \(I\) intermediates, i.e., if \(\epsilon_p = \epsilon_q \)
+\[I_{pq}\leftarrow-\frac{1}{2}I_{qp}^{\prime\prime}=-\frac{1}{2}I_{qp}^{\prime}\]
+The factor of 1/2 for the second term in \(I_{IJ}\) and the above contribution for degenerate orbitals are missing in the 2019 paper.
 <br><br>
 <a href="notes.html">Back</a>
 </p> 
