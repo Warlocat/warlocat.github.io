@@ -3,7 +3,8 @@ layout: about
 title: about
 permalink: /
 subtitle: 183A Sterling Chemistry Lab, 225 Prospect St, New Haven, CT 06511
-  Contact. <a href="mailto:cq_zhang@outlook.com"> cq_zhang@outlook.com</a>
+  
+  <a href="mailto:cq_zhang@outlook.com"> cq_zhang@outlook.com</a> or <a href="mailto:chaoqun.zhang@yale.edu"> chaoqun.zhang@yale.edu</a>
 
 profile:
   align: right
@@ -27,4 +28,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am Chaoqun Zhang, currently a post-doc working with [Professor Tianyu Zhu](https://www.tianyuzhu.org/) at Department of Chemistry, Yale University.
+I am Chaoqun Zhang 张超群, currently a post-doc working with [Professor Tianyu Zhu](https://www.tianyuzhu.org/) at Department of Chemistry, Yale University.
+I got my Ph.D. degree with [Professor Lan Cheng](https://chemistry.jhu.edu/directory/lan-cheng/) at Johns Hopkins University and my Bachelor degree at Zhejiang University.
+
+I work on electronic structure theories, with expertise in relativistic quantum chemistry. I am interested in molecules and materials where spin-orbit coupling plays significant roles, including heavy-element-contain systems, spin defects, molecular spin qubits, and so on.
