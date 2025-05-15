@@ -2,15 +2,16 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: 183A Sterling Chemistry Lab, 225 Prospect St, New Haven, CT 06511
+  Contact. <a href="mailto:cq_zhang@outlook.com"> cq_zhang@outlook.com</a>
 
 profile:
   align: right
   image: myphoto.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p> cq_zhang@outlook.com <
-    <p>183A Sterling Chemistry Lab, Yale University</p>
+    Photo taken at DAMOP 2022 with <a href="https://meetings.aps.org/Meeting/DAMOP22/Session/V01.22"> my poster</a>
+     
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
