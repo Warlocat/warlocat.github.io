@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2016-01-15 07:59:00-0400
+date: 2025-04-30
 inline: true
 related_posts: false
 ---
 
-A simple inline announcement with Markdown emoji! :sparkles: :smile:
+Attended [PCTS workshop for Nonadiabatic dynamics, electron-phonon interactions, and spin-phonon couplings](https://pcts.princeton.edu/events/2025/nonadiabatic-dynamics-electron-phonon-interactions-and-spin-phonon-couplings)
