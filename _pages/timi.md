@@ -4,7 +4,6 @@ title: Timi
 layout: post
 date: 2025-05-16
 description: this is the cutest cat in the world
-thumbnail: assets/img/9.jpg
 ---
 
 My girlfrined [Yuchen](https://yuchenwang2015.github.io) and I have a beautiful cat. 
