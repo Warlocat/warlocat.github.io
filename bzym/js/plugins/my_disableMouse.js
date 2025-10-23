@@ -1,0 +1,1 @@
+TouchInput._setupEventHandlers=function(){};
