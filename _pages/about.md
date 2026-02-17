@@ -8,10 +8,10 @@ subtitle: >
 
 profile:
   align: right
-  image: myphoto.jpg
+  image: myphoto2.jpg
   image_circular: false # crops the image to make it circular
-  more_info: >
-    Photo taken at DAMOP 2022 with <a href="https://meetings.aps.org/Meeting/DAMOP22/Session/V01.22"> my poster</a>
+#   more_info: >
+#     Photo taken at DAMOP 2022 with <a href="https://meetings.aps.org/Meeting/DAMOP22/Session/V01.22"> my poster</a>
      
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
